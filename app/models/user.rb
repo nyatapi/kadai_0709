@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :pictures
   before_validation { email.downcase! }
+  mount_uploader :image, ImageUploader
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name,  presence: true, length: { maximum: 30 }

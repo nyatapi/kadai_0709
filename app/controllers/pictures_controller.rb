@@ -52,7 +52,7 @@ class PicturesController < ApplicationController
   end
 
   def picture_params
-    params.require(:picture).permit(:title, :content, :image)
+    params.require(:picture).permit(:title, :content, :image, :image_chach)
   end
 
 end

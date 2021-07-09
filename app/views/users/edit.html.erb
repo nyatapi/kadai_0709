@@ -1,0 +1,18 @@
+<h1>編集画面</h1>
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class = "new-form">
+      <%= f.label :名前 %>
+      <%= f.text_field :name %>
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email %>
+      <%= f.label :画像 %>
+      <%= f.file_field :image %>
+      <%= f.label :紹介文 %>
+      <%= f.text_area :content %>
+      <%= f.label :パスワード %>
+      <%= f.password_field :password %>
+      <%= f.label :パスワード確認 %>
+      <%= f.password_field :password_confirmation %>
+  </div>
+  <%= f.submit "編集する", class: "send"%>
+<% end %>
