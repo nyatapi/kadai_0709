@@ -17,12 +17,12 @@
         <td><%= image_tag picture.image.url, class: "img" %></td>
         <td><%= link_to 'Info', picture_path(picture.id) %></td>
         <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Delete', picture_path(picture.id), method: :delete, data: { confirm: '削除していいですか?' } %></td>
+        <td><%= link_to 'Delete', picture_path(picture.id), method: :delete, data: { confirm: 'Is it okay to delete?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<%= link_to 'Favo', favorites_path %>
 <%= link_to 'New Post', new_picture_path %>

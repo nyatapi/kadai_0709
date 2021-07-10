@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   before_action :set_user, only: [:show, :update, :edit]
+  before_action :ensure_current_user, only: [:show, :edit, :update]
+
+  def index
+    @pictures = Picture.all
+  end
 
   def new
     @user = User.new

@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:edit, :update, :destroy,]
 
   def index
     @pictures = Picture.all
@@ -21,6 +22,7 @@ class PicturesController < ApplicationController
     if params[:back]
       render :new
     elsif @picture.save
+      ContactMailer.contact_mail(@contact).deliver
       redirect_to pictures_path, notice: 'Completed'
     else
       render :new
@@ -28,6 +30,12 @@ class PicturesController < ApplicationController
   end
 
   def show
+      @favorite = current_user.favorites.find_by(picture_id: @picture.id)
+    if logged_in?
+      @favorite = current_user.favorites.find_by(user_id: @user_id)
+    else
+      record_to new_user_path, notice: 'Login!Camone!'
+    end
   end
 
   def edit
@@ -52,7 +60,7 @@ class PicturesController < ApplicationController
   end
 
   def picture_params
-    params.require(:picture).permit(:title, :content, :image, :image_cache)
+    params.require(:picture).permit(:title, :content, :image, :image_cache, :user_id)
   end
 
 end

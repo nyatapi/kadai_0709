@@ -6,8 +6,8 @@
 <br>
 <br>
 <h3><%= @user.name %><%= @user.email %></h3>
-<h1>名前：<%= @user.name%></h1>
-<p>メールアドレス：<%= @user.email %></p>
-<p>画像：<%= image_tag @user.image.url %></p>
-<%= link_to 'プロフィール編集', edit_user_path %>
+<h1>Name<%= @user.name%></h1>
+<p>Email<%= @user.email %></p>
+<p>Picture<%= image_tag(@user.image.url) if @user.image && @user.image.url %></p>
+<%= link_to "Go!Edit!", edit_user_path %>
 <%= link_to "Post", pictures_path %>

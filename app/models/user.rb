@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :pictures
+  has_many :favorites, dependent: :destroy
   before_validation { email.downcase! }
   mount_uploader :image, ImageUploader
 
